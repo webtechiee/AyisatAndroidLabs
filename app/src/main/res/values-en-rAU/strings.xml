@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ayisat Android Lab</string>
+    <string name="hello_message">Heya</string>
+    <string name="button_message">am a butto</string>
+</resources>
