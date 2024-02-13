@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ayisat Android Lab</string>
+    <string name="spin_message">Spin_flag</string>
+    <string name="button1">Buton 1</string>
+    <string name="button2">Buton 2</string>
+    <string name="button3">Buton 3</string>
+</resources>
