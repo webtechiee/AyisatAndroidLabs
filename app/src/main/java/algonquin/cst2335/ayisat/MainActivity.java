@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         // Initialize SharedPreferences
         prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
 
-        Log.w("Main Activity","On create");
         EditText emailEditText = findViewById(R.id.emailEditText);
         String emailAddress = prefs.getString("LoginName", "");
         emailEditText.setText(emailAddress);
@@ -39,9 +38,12 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("LoginName", emailEditText.getText().toString());
             editor.apply();
 
+
             // Start SecondActivity
             Intent nextPage = new Intent(MainActivity.this, SecondActivity.class);
+            nextPage.putExtra("EmailAddress", emailEditText.getText().toString());
             startActivity(nextPage);
+
         });
     }
 

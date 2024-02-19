@@ -25,7 +25,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -45,7 +44,7 @@ public class SecondActivity extends AppCompatActivity {
         TextView txtWelcome = findViewById(R.id.textView2);
 
         String emailAddress = fromPrevious.getStringExtra("EmailAddress");
-        txtWelcome.setText("Welcome Back: " + emailAddress);
+        txtWelcome.setText(String.format("Welcome Back: %s", emailAddress));
 
         EditText phoneNumberEditText = findViewById(R.id.editTextPhone);
 
@@ -156,26 +155,20 @@ public class SecondActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        /// show the captured image in the imageview
-        ImageView img=(ImageView) findViewById(R.id.imageView);
-        Bitmap thumbnail=data.getParcelableExtra("data");
-        img.setImageBitmap(thumbnail);
-        //// save the captured image in my device
-        FileOutputStream fOut = null;
-        try {
-            fOut = openFileOutput("Picture.png", Context.MODE_PRIVATE);
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
+            // Show the captured image in the ImageView
+            if (resultCode == Activity.RESULT_OK) {
+                ImageView img = findViewById(R.id.imageView);
+                Bitmap thumbnail = data.getParcelableExtra("data");
+                img.setImageBitmap(thumbnail);
 
-            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, fOut);
-            fOut.flush();
-            fOut.close();
-            Log.w("Ayisat", "file saved");
+                // Save the captured image in the device
+                saveImageToFile(thumbnail);
+            } else {
+                // Handle cancel or failed capture
+                Toast.makeText(this, "Camera capture canceled or failed", Toast.LENGTH_SHORT).show();
+            }
         }
-        catch (FileNotFoundException e)
-        { e.printStackTrace();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
     }
-}
 
+}
