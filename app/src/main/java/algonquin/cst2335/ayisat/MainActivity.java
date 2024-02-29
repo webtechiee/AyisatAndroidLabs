@@ -1,96 +1,108 @@
 package algonquin.cst2335.ayisat;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import algonquin.cst2335.ayisat.databinding.ActivityMainBinding;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+/**
+ * This activity allows the user to input a password and checks its complexity.
+ * It provides feedback to the user based on the complexity of the entered password.
+ *
+ * @author Ayisat Bakare
+ * @version 1.0
+ */
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding variableBinding;
-    private MainViewModel mainViewModel;
 
+    /** EditText for user input */
+    private EditText edt;
 
-    @Override
+    /** Button for triggering password complexity check */
+    private Button btn;
+
+    /** TextView for displaying the result of password complexity check */
+    private TextView textView;
+@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        variableBinding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(variableBinding.getRoot());
+        setContentView(R.layout.activity_main);
+        
+       TextView txtv=findViewById(R.id.textView);
+       Button btn = findViewById(R.id.button);
+        EditText edt = findViewById(R.id.editTextText2);
 
-        // Initialize ViewModel
-        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        btn.setOnClickListener( clk ->{
+            String password = edt.getText().toString();
+            boolean isComplex = checkPasswordComplexity(password);
 
-        Button btn = variableBinding.button;
-        EditText myedit = variableBinding.myedittext;
-        TextView mytext = variableBinding.textView;
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Get the current text in the EditText
-                String editString = myedit.getText().toString();
-                // Set the string on the TextView
-                mytext.setText("Your edit text has: " + editString);
+            if (isComplex) {
+                txtv.setText("Your password meets the requirements");
+            } else {
+                txtv.setText("You shall not pass!");
             }
         });
+        }
 
-        // Observe changes in isSomethingEnabled and update CompoundButtons
-        mainViewModel.isSomethingEnabled.observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean isChecked) {
-                // Show a Toast message with the new value
-                String toastMessage = "The value is now: " + isChecked;
-                Toast.makeText(MainActivity.this, toastMessage, Toast.LENGTH_SHORT).show();
+    /** This function check if the password meets the complexity requirement
+     *
+     * @param pw The string that we are checking
+     * @return Returns true if the password is complex enough
+     */
+    boolean checkPasswordComplexity(String pw) {
+        boolean foundUpperCase, foundLowerCase, foundNumber, foundSpecial;
+        foundUpperCase = foundLowerCase = foundNumber = foundSpecial = false;
 
-                // Update all CompoundButtons to the new value
-                variableBinding.checkBox.setChecked(isChecked);
-                variableBinding.radioButton2.setChecked(isChecked);
-                variableBinding.switch2.setChecked(isChecked);
+        for (int i = 0; i < pw.length(); i++) {
+            char c = pw.charAt(i);
+            if (Character.isUpperCase(c)) {
+                foundUpperCase = true;
+            } else if (Character.isLowerCase(c)) {
+                foundLowerCase = true;
+            } else if (Character.isDigit(c)) {
+                foundNumber = true;
+            } else if (isSpecialCharacter(c)) {
+                foundSpecial = true;
             }
-        });
+        }
 
-        // Set OnCheckedChangeListener for each CompoundButton using lambda expression
-        variableBinding.checkBox.setOnCheckedChangeListener((button, isChecked) -> {
-            mainViewModel.isSomethingEnabled.postValue(isChecked);
-        });
+        if (!foundUpperCase) {
+            Toast.makeText(this, "Your password does not have an upper case letter", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (!foundLowerCase) {
+            Toast.makeText(this, "Your password does not have a lower case letter", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (!foundNumber) {
+            Toast.makeText(this, "Your password does not have a number", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (!foundSpecial) {
+            Toast.makeText(this, "Your password does not have a special symbol", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
+    }
 
-        variableBinding.radioButton2.setOnCheckedChangeListener((button, isChecked) -> {
-            mainViewModel.isSomethingEnabled.postValue(isChecked);
-        });
+    boolean isSpecialCharacter(char c) {
+        switch (c) {
+            case '#':
+            case '$':
+            case '%':
+            case '^':
+            case '&':
+            case '*':
+            case '!':
+            case '@':
+            case '?':
+                return true;
+            default:
+                return false;
+        }
 
-        variableBinding.switch2.setOnCheckedChangeListener((button, isChecked) -> {
-            mainViewModel.isSomethingEnabled.postValue(isChecked);
-        });
-
-        // Access ImageView using ViewBinding
-        ImageView imageView = variableBinding.imageView;
-
-        // Set onClick listener for ImageView using lambda expression
-        imageView.setOnClickListener(v -> {
-            // Handle onClick event
-            // For example, show a toast message
-            Toast.makeText(MainActivity.this, "ImageView clicked", Toast.LENGTH_SHORT).show();
-        });
-
-       // ActivityMainBinding binding = null;
-        variableBinding.imageButton3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Get width and height of the ImageButton
-                int width = v.getWidth();
-                int height = v.getHeight();
-
-                // Show Toast message with width and height
-                String toastMessage = "The width = " + width + " and height = " + height;
-                Toast.makeText(MainActivity.this, toastMessage, Toast.LENGTH_SHORT).show();
-            }
-
-        });
     }
 }
+
+
+

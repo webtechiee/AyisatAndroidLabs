@@ -2,7 +2,22 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="PasswordComplexityTest">
+        <State />
+      </entry>
       <entry key="app">
+        <State />
+      </entry>
+      <entry key="testPasswordComplexEnough()">
+        <State />
+      </entry>
+      <entry key="testPasswordMissingDigit()">
+        <State />
+      </entry>
+      <entry key="testPasswordMissingSpecialCharacter()">
+        <State />
+      </entry>
+      <entry key="testPasswordMissingUpperCase()">
         <State />
       </entry>
     </value>

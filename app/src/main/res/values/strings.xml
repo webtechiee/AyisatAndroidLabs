@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Ayisat Android Lab</string>
-    <string name="hello_message">Hello world</string>
-    <string name="button_message">I\'m a button</string>
-    <string name="editmessage">I\'m an EditText</string>
+    <string name="hello_message">Type your password</string>
+    <string name="button_message">Login</string>
+    <string name="passwordmessage" translatable="false">Type password</string>
     <string name="hinttext">Write something here</string>
     <string name="checkmessage">Do you drink coffee?</string>
     <string name="radiomessage">Do you drink coffee?</string>
     <string name="switchmessage">Do you drink coffee</string>
-    <string name="image_button_description">width and height of image button</string>
+    <string name="image_button_description" translatable="false">width and height of image button</string>
 </resources>
