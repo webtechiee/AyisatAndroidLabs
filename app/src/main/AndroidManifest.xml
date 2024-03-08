@@ -24,19 +24,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AyisatAndroidLab"
         tools:targetApi="31">
+
         <activity
-            android:name=".SecondActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name="ChatRoom"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        </application>
 
-    </application>
+
 
 </manifest>
