@@ -2,4 +2,17 @@
     <string name="app_name">Ayisat Android Lab</string>
     <string name="hello_message">Hello world</string>
     <string name="button_message">I\'m a button</string>
+    <string name="get_forcast" translatable="false">GET FORECAST</string>
+    <string name="type_city_name_here" translatable="false">Type City name here</string>
+    <string name="type_in_the_name_of_a_city" translatable="false">Type in the name of a city:</string>
+    <string name="temp" translatable="false">temp</string>
+    <string name="min" translatable="false">min</string>
+    <string name="max" translatable="false">max</string>
+    <string name="humidity" translatable="false">humidity</string>
+    <string name="get_forecast" translatable="false" />
+    <string name="get_forecast_description" translatable="false">this is a weather forecast software</string>
+    <string name="min_temp" translatable="false" />
+    <string name="max_temp" translatable="false" />
+    <string name="show_forecast" translatable="false" />
+    <string name="enter_city_name" translatable="false" />
 </resources>
