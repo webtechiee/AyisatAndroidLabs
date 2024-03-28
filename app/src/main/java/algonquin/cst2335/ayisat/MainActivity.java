@@ -1,5 +1,4 @@
 package algonquin.cst2335.ayisat;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -21,18 +20,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.receive_message);
         Log.w("MainActivity", "In onCreate() - Loading Widgets");
         Log.w(TAG, "onCreate: Activity is being created");
 
         // Initialize SharedPreferences
         prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
 
-        EditText emailEditText = findViewById(R.id.emailEditText);
+        EditText emailEditText = findViewById(R.id.inputText);
         String emailAddress = prefs.getString("LoginName", "");
         emailEditText.setText(emailAddress);
 
-        Button loginButton = findViewById(R.id.button);
+        Button loginButton = findViewById(R.id.time);
         loginButton.setOnClickListener(v -> {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("LoginName", emailEditText.getText().toString());

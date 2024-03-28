@@ -22,23 +22,22 @@
 
     <EditText
         android:id="@+id/emailEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="266dp"
+        android:layout_height="70dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="text"
         android:text="Type email here"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/editTextText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="247dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="44dp"
         android:ems="10"
         android:inputType="textPassword"
         android:text="Name"

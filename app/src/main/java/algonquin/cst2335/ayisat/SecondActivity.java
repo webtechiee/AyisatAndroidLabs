@@ -37,16 +37,16 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.receive_message);
 
         Intent fromPrevious = getIntent();
 
-        TextView txtWelcome = findViewById(R.id.textView2);
+        TextView txtWelcome = findViewById(R.id.imageView);
 
         String emailAddress = fromPrevious.getStringExtra("EmailAddress");
         txtWelcome.setText(String.format("Welcome Back: %s", emailAddress));
 
-        EditText phoneNumberEditText = findViewById(R.id.editTextPhone);
+        EditText phoneNumberEditText = findViewById(R.id.inputText);
 
         // Load the saved phone number and set it to phoneNumberEditText
         SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
@@ -62,7 +62,7 @@ public class SecondActivity extends AppCompatActivity {
                     CAMERA_PERMISSION_REQUEST_CODE);
         }
 
-        Button callButton = findViewById(R.id.button2);
+        Button callButton = findViewById(R.id.time);
         callButton.setOnClickListener(v -> {
             String phoneNumberStr = phoneNumberEditText.getText().toString();
 
@@ -92,7 +92,7 @@ public class SecondActivity extends AppCompatActivity {
                 });
 
         // Set up the click listener for the "Change Profile Picture" button
-        findViewById(R.id.button3).setOnClickListener(v -> {
+        findViewById(R.id.time).setOnClickListener(v -> {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                     == PackageManager.PERMISSION_GRANTED) {
                 // Permission is granted, launch the camera intent
